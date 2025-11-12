@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { ProfileDetailCard } from './ProfileDetailCard'
 import type { Profile } from '@/app/lib/types'
-import { Filter, ChevronDown, Check } from 'lucide-react'
+import { Filter, Check } from 'lucide-react'
 
 interface ProfileListProps {
   profiles: Profile[]

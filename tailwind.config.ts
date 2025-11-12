@@ -77,7 +77,7 @@ const config = {
     },
   },
   plugins: [
-    plugin(function ({ addBase, theme }: any) {
+    plugin(function ({ addBase }: any) {
       addBase({
         ":root": {
           colorScheme: "light",

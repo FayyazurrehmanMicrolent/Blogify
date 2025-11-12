@@ -8,13 +8,15 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { cn } from "@/lib/utils"
 import { format } from "date-fns"
 
-interface DateRange {
-  from?: Date
-  to?: Date
+import { DateRange as ReactDayPickerDateRange } from "react-day-picker"
+
+type DateRange = {
+  from: Date
+  to: Date
 }
 
 interface DatePickerWithRangeProps {
-  value?: DateRange
+  value?: DateRange | null
   onChange?: (range: DateRange | undefined) => void
   className?: string
 }
@@ -22,12 +24,14 @@ interface DatePickerWithRangeProps {
 export function DatePickerWithRange({ value, onChange, className }: DatePickerWithRangeProps) {
   const [isOpen, setIsOpen] = useState(false)
 
-  const handleSelect = (range: any) => {
-    if (range?.from && range?.to) {
-      onChange?.(range)
-      setIsOpen(false)
-    } else if (range?.from) {
-      onChange?.(range)
+  const handleSelect = (range: ReactDayPickerDateRange | undefined) => {
+    if (range?.from) {
+      onChange?.(range as DateRange)
+      if (range.to) {
+        setIsOpen(false)
+      }
+    } else {
+      onChange?.(undefined)
     }
   }
 
@@ -63,7 +67,7 @@ export function DatePickerWithRange({ value, onChange, className }: DatePickerWi
             initialFocus
             mode="range"
             defaultMonth={value?.from}
-            selected={value}
+            selected={value || undefined}
             onSelect={handleSelect}
             numberOfMonths={2}
           />

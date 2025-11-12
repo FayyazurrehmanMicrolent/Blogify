@@ -1,9 +1,10 @@
 'use client'
 
-import React, { useEffect, useState } from 'react';
+// import React from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { ArrowLeft, MessageCircle, MapPin, User } from 'lucide-react';
-import { ImageGallery } from '@/components/ImageGallery';
+import { ImageGallery } from '../../../components/ImageGallery';
 
 type Profile = {
   id: string;
